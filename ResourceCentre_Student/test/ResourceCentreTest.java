@@ -83,48 +83,20 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		
-		//Weiliang
-		// Test if Item list is not null but empty, so that can add a new item
-		assertNotNull("Test if there is valid Chromebook arraylist to add to", chromebookList);
-				
-		//test if the list of chromebooks retrieved from the SourceCentre is empty
-		String allChromebook = ResourceCentre.retrieveAllChromebook(chromebookList);
-		String testOutput = "";
-		assertEquals("Check that ViewAllCamcorderlist", testOutput, allChromebook);
-						
-		//Given an empty list, after adding 2 items, test if the size of the list is 2
-		ResourceCentre.addChromebook(chromebookList, cb1);
-		ResourceCentre.addChromebook(chromebookList, cb2);
-		assertEquals("Test if that Chromebook arraylist size is 2?", 2, chromebookList.size());
-				
-		//test if the expected output string same as the list of chromebooks retrieved from the SourceCentre
-		allChromebook = ResourceCentre.retrieveAllCamcorder(camcorderList);
-
-		testOutput = String.format("%-10s %-30s %-10s %-10s %-20d\n","CB001", "ASUS Chromebook", "Yes", "", "Win 10");
-		testOutput += String.format("%-10s %-30s %-10s %-10s %-20d\n","CB002", "HP Chromebook", "Yes", "", "Win 10");
-			
-		assertEquals("Check that ViewAllChromeboklist", testOutput, allChromebook);
 	}
 
 	@Test
 	public void doLoanCamcorderTest() {
 		//fail("Not yet implemented");
 		// write your code here
-		
-		//Xuanting
-		//Test if there are any available Camcorder to loan from the chromebookList
-		assertNotNull("Test if there are any available camcorders to loan from", camcorderList);
-		
+			
 	}
 	
 	@Test
 	public void doLoanChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
-		
-		//Xuanting
-		//Test if there are any available Chromebook to loan from the chromebookList
-		assertNotNull("Test if there are any available chromebooks to loan from", chromebookList);
+
 	}
 	
 	@Test
