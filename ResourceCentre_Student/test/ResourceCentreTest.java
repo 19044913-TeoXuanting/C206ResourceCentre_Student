@@ -110,12 +110,20 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		
+		//Xuanting
+		//Test if there are any available Camcorder to loan from the chromebookList
+		assertNotNull("Test if there are any available camcorders to loan from", camcorderList);
+		
 	}
 	
 	@Test
 	public void doLoanChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		
+		//Xuanting
+		//Test if there are any available Chromebook to loan from the chromebookList
+		assertNotNull("Test if there are any available chromebooks to loan from", chromebookList);
 	}
 	
 	@Test
