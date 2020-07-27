@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -129,8 +130,23 @@ public class ResourceCentreTest {
 		// write your code here
 		
 		//Xuanting
-		//Test if there is valid Camcorder arraylist to loan from
-		assertNotNull("Test if there is valid Camcorder arraylist to loan from", camcorderList);
+		//Test that there is valid Camcorder arraylist to load from
+		assertNotNull("Test if there is valid Camcorder arraylist to loan items from", camcorderList);
+
+	    // Test if an item that is available item can be loaned
+	    LocalDate acceptedDueDate = LocalDate.now().plusDays(1);
+	    boolean condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", acceptedDueDate.toString());
+	    assertFalse("Test an available item can be loaned", condition);
+
+	    // Test if an item that has a due date before the current date cannot be loaned
+	    LocalDate rejectedDueDate = LocalDate.now().minusDays(1);
+	    condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", rejectedDueDate.toString());
+	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
+
+	    // Test that an item that has a due date on the current date cannot be loaned
+	    LocalDate currentDate = LocalDate.now();
+	    condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", currentDate.toString());
+	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
 			
 	}
 	
@@ -141,8 +157,22 @@ public class ResourceCentreTest {
 		
 		//Xuanting
 		//Test if there is valid Chromebook arraylist to loan from
-		assertNotNull("Test if there is valid Chromebook arraylist to loan from", chromebookList);
+		assertNotNull("Test if there is valid Chromebook arraylist to loan items from", chromebookList);
+		
+		// Test if an item that is available item can be loaned
+	    LocalDate acceptedDueDate = LocalDate.now().plusDays(1);
+	    boolean condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", acceptedDueDate.toString());
+	    assertFalse("Test an available item can be loaned", condition);
 
+	    // Test if an item that has a due date before the current date cannot be loaned
+	    LocalDate rejectedDueDate = LocalDate.now().minusDays(1);
+	    condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", rejectedDueDate.toString());
+	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
+
+	    // Test that an item that has a due date on the current date cannot be loaned
+	    LocalDate currentDate = LocalDate.now();
+	    condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", currentDate.toString());
+	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
 	}
 	
 	@Test
@@ -150,11 +180,43 @@ public class ResourceCentreTest {
 		//fail("Not yet implemented");
 		// write your code here
 		
+		//Ashley
+		//Test if there is valid camcorder arraylist to return to
+		assertNotNull("Test if there is valid camcorder arraylist to return to", camcorderList);
+		ResourceCentre.addCamcorder(camcorderList, cc1);
+		
+		//Error Condition
+		Boolean isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC001");
+		assertFalse("Check that loaned camcorder CC001 is returned - false?", isReturned);
+				
+		//Normal Condition
+		ResourceCentre.addCamcorder(camcorderList, cc2);
+		cb2.setIsAvailable(false);
+		isReturned = ResourceCentre.doReturnCamcorder(camcorderList, "CC002");
+		assertTrue("Check that loaned camcorder CC002 is returned - true?", isReturned);
+		
 	}
+	
 	@Test
 	public void doReturnChromebookTest() {
 		//fail("Not yet implemented");
 		// write your code here
+		
+		//Johnathan
+		//Test if there is valid chromebook arraylist to return to
+		assertNotNull("Test if there is valid chromebook arraylist to return to", chromebookList);
+		ResourceCentre.addChromebook(chromebookList, cb1);
+		
+		//Error Condition
+		Boolean isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB001");
+		assertFalse("Check that loaned chromebook CB001 is returned - false?", isReturned);
+		
+		//Normal Condition
+		ResourceCentre.addChromebook(chromebookList, cb2);
+		cb2.setIsAvailable(false);
+		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB002");
+		assertTrue("Check that loaned chromebook CB002 is returned - true?", isReturned);
+		
 	}
 	
 	@After
