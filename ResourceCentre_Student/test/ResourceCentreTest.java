@@ -173,7 +173,7 @@ public class ResourceCentreTest {
 		ResourceCentre.viewAllChromebook(chromebookList);
 		
 		String tag = Helper.readString("Enter asset tag > ");
-		String dueDate = helper.readString("Enter due date > ");
+		String dueDate = Helper.readString("Enter due date > ");
 		
 		boolean isAvailable = false;
 		boolean isLoaned = false;
