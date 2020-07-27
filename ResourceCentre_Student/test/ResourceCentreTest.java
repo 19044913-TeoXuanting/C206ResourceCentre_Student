@@ -134,19 +134,29 @@ public class ResourceCentreTest {
 		assertNotNull("Test if there is valid Camcorder arraylist to loan items from", camcorderList);
 
 	    // Test if an item that is available item can be loaned
-	    LocalDate acceptedDueDate = LocalDate.now().plusDays(1);
-	    boolean condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", acceptedDueDate.toString());
-	    assertFalse("Test an available item can be loaned", condition);
-
-	    // Test if an item that has a due date before the current date cannot be loaned
-	    LocalDate rejectedDueDate = LocalDate.now().minusDays(1);
-	    condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", rejectedDueDate.toString());
-	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
-
-	    // Test that an item that has a due date on the current date cannot be loaned
-	    LocalDate currentDate = LocalDate.now();
-	    condition = ResourceCentre.doLoanCamcorder(camcorderList, "CC0011", currentDate.toString());
-	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
+		ResourceCentre.viewAllCamcorder(camcorderList);
+		
+		String tag = Helper.readString("Enter asset tag > ");
+		String dueDate = Helper.readString("Enter due date > ");
+		
+		boolean isAvailable = false;
+		boolean isLoaned = false;
+		
+		for (int i = 0; i < camcorderList.size(); i++) {
+			if (tag.equals(camcorderList.get(i).getAssetTag()) && camcorderList.get(i).getIsAvailable() == true) {
+				camcorderList.get(i).setIsAvailable(false);
+				camcorderList.get(i).setDueDate(dueDate);
+				isLoaned = true;
+				
+			} else if (tag.equals(camcorderList.get(i).getAssetTag()) && camcorderList.get(i).getIsAvailable() == true) {
+				isAvailable = true;
+			}
+			
+		}
+		if (isLoaned == false) {
+			System.out.println("Invalid Asset Tag!");
+		}
+	    
 			
 	}
 	
@@ -159,20 +169,30 @@ public class ResourceCentreTest {
 		//Test if there is valid Chromebook arraylist to loan from
 		assertNotNull("Test if there is valid Chromebook arraylist to loan items from", chromebookList);
 		
-		// Test if an item that is available item can be loaned
-	    LocalDate acceptedDueDate = LocalDate.now().plusDays(1);
-	    boolean condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", acceptedDueDate.toString());
-	    assertFalse("Test an available item can be loaned", condition);
-
-	    // Test if an item that has a due date before the current date cannot be loaned
-	    LocalDate rejectedDueDate = LocalDate.now().minusDays(1);
-	    condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", rejectedDueDate.toString());
-	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
-
-	    // Test that an item that has a due date on the current date cannot be loaned
-	    LocalDate currentDate = LocalDate.now();
-	    condition = ResourceCentre.doLoanChromebook(chromebookList, "CB001", currentDate.toString());
-	    assertFalse("Test that an item that has a due date before the current date cannot be loaned", condition);
+		// Test if an item is available to be loaned
+		ResourceCentre.viewAllChromebook(chromebookList);
+		
+		String tag = Helper.readString("Enter asset tag > ");
+		String dueDate = helper.readString("Enter due date > ");
+		
+		boolean isAvailable = false;
+		boolean isLoaned = false;
+		
+		for (int i = 0; i < chromebookList.size(); i++) {
+			if (tag.equals(chromebookList.get(i).getAssetTag()) && chromebookList.get(i).getIsAvailable() == true) {
+				chromebookList.get(i).setIsAvailable(false);
+				chromebookList.get(i).setDueDate(dueDate);
+				isLoaned = true;
+				
+			} else if (tag.equals(chromebookList.get(i).getAssetTag()) && chromebookList.get(i).getIsAvailable() == true) {
+				isAvailable = true;
+			}
+			
+		}
+		if (isLoaned == false) {
+			System.out.println("Invalid Asset Tag!");
+		}
+		
 	}
 	
 	@Test
