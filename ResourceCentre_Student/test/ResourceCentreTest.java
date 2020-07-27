@@ -237,6 +237,7 @@ public class ResourceCentreTest {
 		isReturned = ResourceCentre.doReturnChromebook(chromebookList, "CB002");
 		assertTrue("Check that loaned chromebook CB002 is returned - true?", isReturned);
 		
+		
 	}
 	
 	@After
